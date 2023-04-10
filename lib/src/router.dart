@@ -39,7 +39,7 @@ Route slide(widget) {
 
 /// [Route animation effect]
 /// Zoom mode route jump animation.
-Route scale(widget, [align]) {
+Route scale(widget) {
   return ScaleRoute(page: widget);
 }
 
