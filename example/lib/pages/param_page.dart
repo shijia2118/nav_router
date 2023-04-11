@@ -4,39 +4,46 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nav_router/nav_router.dart';
 import 'package:nav_router_example/pages/home_page.dart';
-import 'package:nav_router_example/widget/show_toast.dart';
+import 'package:oktoast/oktoast.dart';
 
 class ParamPage extends StatefulWidget {
+  const ParamPage({super.key});
+
   @override
-  _ParamPageState createState() => _ParamPageState();
+  ParamPageState createState() => ParamPageState();
 }
 
-class _ParamPageState extends State<ParamPage> {
+class ParamPageState extends State<ParamPage> {
   List<RouteModel> data = [
-    new RouteModel('Parameter jump', RouterType.cupertino),
-    new RouteModel('NavData jump', RouterType.cupertino),
+    RouteModel('Parameter jump', RouterType.cupertino),
+    RouteModel('NavData jump', RouterType.cupertino),
   ];
 
   Widget buildItem(RouteModel item) {
-    return new Container(
+    return SizedBox(
       width: (MediaQuery.of(context).size.width - 50) / 2,
-      child: new FlatButton(
-        color: Color(0xfff7c672),
-        padding: EdgeInsets.symmetric(vertical: 50.0),
+      child: TextButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+              const EdgeInsets.symmetric(vertical: 50.0)),
+
+          ///背景色
+          backgroundColor: MaterialStateProperty.all(const Color(0xfff7c672)),
+        ),
         onPressed: () {
           if (item.name == 'Parameter jump') {
-            routePush(new ReturnParamPage()).then((v) {
-              showToast(context, 'I received::$v');
+            routePush(const ReturnParamPage()).then((v) {
+              showToast('I received::$v');
             });
           } else {
-            routePush(new ReturnParamPage(navData: (v) {
-              showToast(context, 'I received::$v');
+            routePush(ReturnParamPage(navData: (v) {
+              showToast('I received::$v');
             }));
           }
         },
-        child: new Text(
+        child: Text(
           item.name,
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
         ),
       ),
     );
@@ -44,21 +51,20 @@ class _ParamPageState extends State<ParamPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      backgroundColor: Color(0xfff4b050),
-      body: new Column(
+    return Scaffold(
+      backgroundColor: const Color(0xfff4b050),
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          new SizedBox(
-              height: MediaQueryData.fromWindow(window).padding.top * 2),
-          new Text(
+          SizedBox(height: MediaQueryData.fromWindow(window).padding.top * 2),
+          const Text(
             'NavRoute',
             style: TextStyle(color: Colors.blueAccent, fontSize: 30.0),
           ),
-          new SizedBox(height: 20.0),
-          new Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: new Wrap(
+          const SizedBox(height: 20.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Wrap(
               spacing: 10.0,
               runSpacing: 10.0,
               alignment: WrapAlignment.start,
@@ -72,50 +78,58 @@ class _ParamPageState extends State<ParamPage> {
 }
 
 class ReturnParamPage extends StatefulWidget {
-  final NavData navData;
+  final NavData? navData;
 
-  ReturnParamPage({this.navData});
+  const ReturnParamPage({super.key, this.navData});
 
   @override
-  _ReturnParamPageState createState() => _ReturnParamPageState();
+  ReturnParamPageState createState() => ReturnParamPageState();
 }
 
-class _ReturnParamPageState extends State<ReturnParamPage> {
+class ReturnParamPageState extends State<ReturnParamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text(
+      appBar: AppBar(
+        title: const Text(
           'param Page',
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Color(0xfff9dc71),
+        backgroundColor: const Color(0xfff9dc71),
         elevation: 0,
-        leading: new InkWell(
-          child: new Icon(CupertinoIcons.back, color: Colors.black),
+        leading: InkWell(
+          child: const Icon(CupertinoIcons.back, color: Colors.black),
           onTap: () => Navigator.of(context).pop(),
         ),
       ),
-      body: new Container(
-        color: Color(0xfff9dc71),
+      body: Container(
+        color: const Color(0xfff9dc71),
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.center,
-        child: new Container(
+        child: SizedBox(
           width: (MediaQuery.of(context).size.width - 50) / 2,
-          child: new FlatButton(
-            color: Color(0xfff7c672),
-            padding: EdgeInsets.symmetric(vertical: 50.0),
-            highlightColor: Color(0xfff4b050),
+          child: TextButton(
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(
+                  const EdgeInsets.symmetric(vertical: 50.0)),
+
+              ///背景色
+              backgroundColor:
+                  MaterialStateProperty.all(const Color(0xfff7c672)),
+
+              ///水波纹
+              overlayColor: MaterialStateProperty.all(const Color(0xfff4b050)),
+            ),
             onPressed: () {
               if (widget.navData != null) {
-                widget.navData('NavData mode parameter transmission');
+                widget.navData!('NavData mode parameter transmission');
                 pop();
               } else {
                 pop('This is the parameter');
               }
             },
-            child: new Text(
+            child: const Text(
               'Return with parameters',
               style: TextStyle(color: Colors.black),
             ),

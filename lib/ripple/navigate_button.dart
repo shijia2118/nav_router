@@ -11,20 +11,15 @@ class NavigateButton extends StatefulWidget {
   final Widget nextScreen;
   final double rangeFactor;
 
-  NavigateButton(
-      {IconData icon = Icons.navigate_next,
-      Color color = Colors.blue,
-      Color splashColor = Colors.white,
-      Color iconColor = Colors.white,
-      Object heroTag = '',
-      double rangeFactor = 2.5,
-      required this.nextScreen})
-      : icon = icon,
-        color = color,
-        splashColor = splashColor,
-        heroTag = heroTag,
-        rangeFactor = rangeFactor,
-        iconColor = iconColor;
+  const NavigateButton(
+      {super.key,
+      this.icon = Icons.navigate_next,
+      this.color = Colors.blue,
+      this.splashColor = Colors.white,
+      this.iconColor = Colors.white,
+      this.heroTag = '',
+      this.rangeFactor = 2.5,
+      required this.nextScreen});
 
   @override
   State<StatefulWidget> createState() => _NavigateButtonState();
@@ -94,7 +89,8 @@ class _NavigateButtonState extends State<NavigateButton>
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: _animation.value > 0.65
-                    ? widget.splashColor.withOpacity(1 - _animation.value as double)
+                    ? widget.splashColor
+                        .withOpacity(1 - _animation.value as double)
                     : widget.splashColor,
               ),
               child: Icon(
@@ -107,7 +103,7 @@ class _NavigateButtonState extends State<NavigateButton>
   }
 
   Future showOverlay() async {
-    OverlayState overlayState = Overlay.of(context)!;
+    OverlayState overlayState = Overlay.of(context);
     OverlayEntry overlayEntry = OverlayEntry(builder: (context) => _ripple());
     overlayState.insert(overlayEntry);
     _animationController.forward();

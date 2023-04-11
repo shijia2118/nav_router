@@ -8,9 +8,9 @@ import 'package:nav_router/all_routes.dart';
 /// be null.
 ///
 Route cupertinoRoute(widget) {
-  return new CupertinoPageRoute(
+  return CupertinoPageRoute(
     builder: (BuildContext context) => widget,
-    settings: new RouteSettings(
+    settings: RouteSettings(
       name: widget.toStringShort(),
     ),
   );
@@ -22,9 +22,9 @@ Route cupertinoRoute(widget) {
 /// be null.
 ///
 Route materialRoute(widget) {
-  return new MaterialPageRoute(
+  return MaterialPageRoute(
     builder: (BuildContext context) => widget,
-    settings: new RouteSettings(
+    settings: RouteSettings(
       name: widget.toStringShort(),
     ),
   );
@@ -39,8 +39,8 @@ Route slide(widget) {
 
 /// [Route animation effect]
 /// Zoom mode route jump animation.
-Route scale(widget) {
-  return ScaleRoute(page: widget);
+Route scale(widget, [align]) {
+  return ScaleRoute(page: widget, alignment: align);
 }
 
 /// [Route animation effect]

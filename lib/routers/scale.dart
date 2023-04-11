@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 ///
 class ScaleRoute extends PageRouteBuilder {
   final Widget page;
-  final Alignment alignment;
+  final Alignment? alignment;
 
-  ScaleRoute({required this.page, this.alignment = Alignment.center})
+  ScaleRoute({required this.page, this.alignment})
       : super(
           pageBuilder: (
             BuildContext context,
@@ -22,7 +22,7 @@ class ScaleRoute extends PageRouteBuilder {
             Widget child,
           ) =>
               ScaleTransition(
-            alignment: alignment,
+            alignment: alignment ?? Alignment.center,
             scale: Tween<double>(
               begin: 0.0,
               end: 1.0,

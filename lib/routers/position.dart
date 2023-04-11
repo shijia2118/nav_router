@@ -22,8 +22,8 @@ class PositionRoute extends PageRouteBuilder {
           ) =>
               PositionedTransition(
             rect: Tween<RelativeRect>(
-              begin: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 10.0),
-              end: RelativeRect.fromLTRB(0.0, 10.0, 0.0, 0.0),
+              begin: const RelativeRect.fromLTRB(0.0, 0.0, 0.0, 10.0),
+              end: const RelativeRect.fromLTRB(0.0, 10.0, 0.0, 0.0),
             ).animate(
                 CurvedAnimation(parent: animation, curve: Curves.bounceIn)),
             child: child,

@@ -19,7 +19,7 @@ import 'package:nav_router/src/util.dart';
 ///   }
 /// }
 /// ```
-final navGK = new GlobalKey<NavigatorState>();
+final navGK = GlobalKey<NavigatorState>();
 
 /// The direct route jump method can also directly set the route jump mode.
 ///
@@ -29,9 +29,9 @@ final navGK = new GlobalKey<NavigatorState>();
 Future<dynamic> routePush(Widget page,
     [RouterType type = RouterType.cupertino]) {
   Route route = routerUtil(type: type, widget: page);
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.push(route);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -57,9 +57,9 @@ Future<dynamic> routePush(Widget page,
 /// ```
 /// {@end-tool}
 Future<dynamic> routePushName(String name) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.pushNamed(name);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -79,9 +79,9 @@ Future<dynamic> routePushName(String name) {
 ///  * [ModalRoute], which provides a `scopedWillPopCallback` that can be used
 ///    to define the route's `willPop` method.
 Future<dynamic> maybePop([result]) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.maybePop(result);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -108,9 +108,9 @@ Future<dynamic> maybePop([result]) {
 /// ```
 /// {@end-tool}
 Future<dynamic> pushReplacementNamed(routeName, [result]) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.pushReplacementNamed(routeName, result: result);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -133,9 +133,9 @@ Future<dynamic> pushReplacementNamed(routeName, [result]) {
 /// ```
 /// {@end-tool}
 Future<dynamic> popAndPushNamed(name, [result]) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.popAndPushNamed(name, result: result);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -161,9 +161,10 @@ Future<dynamic> popAndPushNamed(name, [result]) {
 Future<dynamic> pushAndRemoveUntil(Widget page,
     [RouterType type = RouterType.cupertino]) {
   Route route = routerUtil(type: type, widget: page);
-  if(navGK.currentState != null){
-    return navGK.currentState!.pushAndRemoveUntil(route, (Route<dynamic> route) => false);
-  }else{
+  if (navGK.currentState != null) {
+    return navGK.currentState!
+        .pushAndRemoveUntil(route, (Route<dynamic> route) => false);
+  } else {
     throw 'Current State is null';
   }
 }
@@ -172,9 +173,10 @@ Future<dynamic> pushAndRemoveUntil(Widget page,
 /// pushNamedAndRemoveUntil("/screen4",ModalRoute.withName('/')
 /// ```
 Future<dynamic> pushNamedAndRemoveUntil(String newRouteName) {
-  if(navGK.currentState != null){
-    return navGK.currentState!.pushNamedAndRemoveUntil(newRouteName, (Route<dynamic> route) => false);
-  }else{
+  if (navGK.currentState != null) {
+    return navGK.currentState!
+        .pushNamedAndRemoveUntil(newRouteName, (Route<dynamic> route) => false);
+  } else {
     throw 'Current State is null';
   }
 }
@@ -199,9 +201,9 @@ Future<dynamic> pushNamedAndRemoveUntil(String newRouteName) {
 Future<dynamic> pushReplacement(Widget page,
     [RouterType type = RouterType.cupertino]) {
   Route route = routerUtil(type: type, widget: page);
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.pushReplacement(route);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -223,9 +225,9 @@ Future<dynamic> pushReplacement(Widget page,
 ///
 /// This method pops directly to the root page
 void popToRootPage() {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     navGK.currentState!.popUntil(ModalRoute.withName('/'));
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -245,9 +247,9 @@ void popToPage(Widget page) {
 ///   popUntil(ModalRoute.withName('/login'));
 /// ```
 void popUntil(RoutePredicate predicate) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.popUntil(predicate);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -256,9 +258,9 @@ void popUntil(RoutePredicate predicate) {
 ///
 /// {@macro flutter.widgets.navigator.removeRoute}
 void removeRoute(Route<dynamic> route) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.removeRoute(route);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -268,9 +270,9 @@ void removeRoute(Route<dynamic> route) {
 ///
 /// {@macro flutter.widgets.navigator.removeRouteBelow}
 void removeRouteBelow(Route<dynamic> anchorRoute) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.removeRouteBelow(anchorRoute);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -285,9 +287,9 @@ void removeRouteBelow(Route<dynamic> anchorRoute) {
 ///    removed by reference to the route above it, rather than directly.
 void replaceRouter<T extends Object>(
     {required Route<dynamic> oldRoute, required Route<T> newRoute}) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.replace(oldRoute: oldRoute, newRoute: newRoute);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -302,10 +304,11 @@ void replaceRouter<T extends Object>(
 ///  * [replace], which is the same but identifies the route to be removed
 ///    directly.
 void replaceRouteBelow<T extends Object>(
-    {required Route<dynamic> anchorRoute,required Route<T> newRoute}) {
-  if(navGK.currentState != null){
-    return navGK.currentState!.replaceRouteBelow(anchorRoute: anchorRoute, newRoute: newRoute);
-  }else{
+    {required Route<dynamic> anchorRoute, required Route<T> newRoute}) {
+  if (navGK.currentState != null) {
+    return navGK.currentState!
+        .replaceRouteBelow(anchorRoute: anchorRoute, newRoute: newRoute);
+  } else {
     throw 'Current State is null';
   }
 }
@@ -326,9 +329,9 @@ void replaceRouteBelow<T extends Object>(
 /// {@end-tool}
 /// {@tool sample}
 pop([result]) {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.pop(result);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }
@@ -342,9 +345,9 @@ pop([result]) {
 ///  * [Route.isFirst], which returns true for routes for which [canPop]
 ///    returns false.
 bool canPop() {
-  if(navGK.currentState != null){
+  if (navGK.currentState != null) {
     return navGK.currentState!.canPop();
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }

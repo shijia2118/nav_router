@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nav_router/nav_router.dart';
-import 'package:nav_router/src/enum.dart';
 import 'package:nav_router/src/util.dart';
 
 /// exitPage is generally itself
@@ -13,10 +12,10 @@ Future<dynamic> routePushAdvance({
   AdvanceType type = AdvanceType.slide,
 }) {
   Route route =
-  advanceUtil(type: type, exitPage: exitPage, enterPage: enterPage);
-  if(navGK.currentState != null){
+      advanceUtil(type: type, exitPage: exitPage, enterPage: enterPage);
+  if (navGK.currentState != null) {
     return navGK.currentState!.push(route);
-  }else{
+  } else {
     throw 'Current State is null';
   }
 }

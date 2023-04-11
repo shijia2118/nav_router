@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:nav_router/nav_router.dart';
 
 class RipplePage extends StatefulWidget {
+  const RipplePage({super.key});
+
   @override
-  _RipplePageState createState() => _RipplePageState();
+  RipplePageState createState() => RipplePageState();
 }
 
-class _RipplePageState extends State<RipplePage> {
+class RipplePageState extends State<RipplePage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(),
-      body: new Center(
+    return Scaffold(
+      appBar: AppBar(),
+      body: const Center(
         child: NavigateButton(
           nextScreen: RipplePage(),
           color: Colors.white,
