@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NewPage extends StatefulWidget {
-  const NewPage({super.key});
+class NextPage extends StatefulWidget {
+  const NextPage({super.key});
 
   @override
-  NewPageState createState() => NewPageState();
+  State<NextPage> createState() => _NextPageState();
 }
 
-class NewPageState extends State<NewPage> {
+class _NextPageState extends State<NextPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

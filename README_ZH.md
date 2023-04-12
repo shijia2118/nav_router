@@ -1,71 +1,53 @@
 Language: [English](README.md) | [中文简体](README_ZH.md)
 
-[![GitHub stars](https://img.shields.io/github/stars/fluttercandies/nav_router)](https://github.com/fluttercandies/nav_router/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/fluttercandies/nav_router)](https://github.com/fluttercandies/nav_router/network)
-[![GitHub issues](https://img.shields.io/github/issues/fluttercandies/nav_router)](https://github.com/fluttercandies/nav_router/issues) 
-
-> 如果产生其他依赖无法编译的问题，可以尝试将`pubspec.yaml`中的`dependencies`中的所有依赖的"^"去掉，重新编译尝试。
-> 还是出错的话在项目主目录执行`flutter clean`再重新运行。
-> 如果出现插件版本不适配记得看`pubspec.yaml`文件介绍的插件flutter版本是否与自己本地Flutter适配。
-
-# nav_router
-
-flutter最简单/轻量/便捷的路由管理方案，支持各种路由动画，跳转/传参起来非常方便，跳转新页面只需：routePush(NewPage());
+# nav_router_fork
+    该插件是在nav_router的基础上进行了更新，本人用了3年，在10多个项目中使用过该插件。我感觉是flutter相关路由插件中，最简单/轻量/便捷的路由管理方案。
+支持各种路由动画，跳转/传参起来非常方便。
+    由于原作者已经不维护，所以本人fork后，并进行了更新和维护，以免浪费了一个好的路由库。
 
 # Log
-* 2020.07.04 - 测试Flutter 1.17.3
+* 2023.04.11 - Adapt Flutter3.7.9 and fix some known issues.
 
-* 2020.06.03 - 取消pop默认空字符串数据
+# 特点
+* 无需使用context
+* 使用超简单
+* 传参超方便
+* 支持各种跳转动画
 
-* 2020.02.28 - 修复dev分支flutter的Pop方法出错。
 
 ## 开始使用
 
 ### 添加依赖
 ```yaml
 dependencies:
-  nav_router: any #具体版本自定义（any表示最新）
+  nav_router: ^2.0.0
 ```
-
-> 相关文章更新中..
 
 然后使用`flutter packages upgrade`来更新flutter的插件包
 
 # 示例项目
-example文件夹中有一个非常漂亮的示例项目。看看这个。否则，请继续阅读以启动并运行。
+example中包含了各种跳转的动画效果，但未包含插件的所有特性。如果希望有更多了解，可以继续看下面的内容。
 
 # 配置
 *  1.在`MaterialApp`的页面先导入我们的插件
 ```dart
 import 'package:nav_router/nav_router.dart';
 ```
-*  2.在`MaterialApp`的`navigatorKey`属性写上`navGK`值
+*  2.在`MaterialApp`的`navigatorKey`属性写上`navGK`值.如果需要使用命名路由，可以给`routes`属性配置一个路由Map.
 ```dart
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: '',
       navigatorKey: navGK,
+      routes: {
+                'HomePage': (context) => const HomePage()
+              },
     );
   }
 ```
-* 3.然后，我们就可以开始使用啦，下面是一个跳转页面的例子
-```dart
-Widget buildItem(RouteModel item) {
-  return new FlatButton(
-    onPressed: () => routePush(new NewPage()),
-    child: new Text('点击跳转'),
-  );
-} 
-```
-
-* 4.如果我们想用其他路由动画跳转可以在后面添加跳转属性,比如：渐变动画
-```dart
-routePush(new NewPage(), RouterType.fade);
-```
-
-# 参数传递
-
-## 方式1：
+# 使用方式
+## 一、参数传递
+### 方式1:
 正常push新页面，但是在后面加上Then，后面的v就是我们跳转之后的页面带回来的数据，然后我们给它打印出来。
 ```dart
 routePush(NewPage()).then((v) {
@@ -82,7 +64,7 @@ FlatButton(
 ),
 ```
 
-## 方式2：
+### 方式2：
 方式二可以用我们的NavData，先在我们要push到的页面添加NavData类型的参数接收,
 ```dart
 class NewPage extends StatlessWidget {
@@ -109,6 +91,68 @@ routePush(NewPage(navData: (v) {
   }),
 );
 ```
+
+## 二、页面跳转
+* 从A页面跳转到B页面：
+```
+routePush(PageB());
+```
+
+* 跳转到指定页面，同时移除当前页面:
+```
+pushReplacement(const PageB());
+```
+
+* 跳转到指定页面，同时移除其它所有页面:
+```
+pushAndRemoveUntil(const PageB());
+```
+* 返回上一页:
+```
+pop();
+```
+* 返回到指定页面:
+```
+popToPage(const PageB());
+```
+* 返回到根页面:
+```
+popToRootPage();
+```
+
+
+
+### 相应的命名路由:
+
+* 从A页面跳转到B页面:
+```
+routePushName(const NewPage().toStringShort());
+```
+
+* 跳转到指定页面，同时移除当前页面：
+```
+pushReplacementNamed(const PageB().toStringShort());
+```
+
+* 跳转到指定页面，同时移除其它所有页面:
+```
+pushNamedAndRemoveUntil(const PageB().toStringShort());
+```
+* 移除当前页面，同时跳转到指定页面，类似pushReplacement:
+```
+popAndPushNamed(const PageB().toStringShort());
+```
+* 跳转到指定页面，同时移除其它所有页面:
+```
+popUntil(ModalRoute.withName('\'));
+```
+
+
+
+
+
+
+
 
 # 效果图 [图片不能显示点我](http://img.flutterj.com/nav_router/)
 |![1.gif](git/1.gif)| ![2.gif](git/2.gif) | ![3.gif](git/3.gif)|

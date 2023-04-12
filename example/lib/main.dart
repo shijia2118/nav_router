@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:nav_router_example/pages/home_page.dart';
-import 'package:nav_router_example/pages/new_pahge.dart';
+import 'package:flutter/services.dart';
+import 'package:nav_router_example/pages/main_page.dart';
+import 'package:nav_router_example/pages/route_stack/page_d.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:nav_router/nav_router.dart';
 
-void main() => runApp(const MyApp());
+import 'pages/route_stack/page_a.dart';
+
+void main() {
+  runApp(const MyApp());
+  SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.light, //白色图标
+    systemNavigationBarColor: Colors.transparent,
+    systemNavigationBarIconBrightness: Brightness.light,
+  );
+  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: [
+      SystemUiOverlay.top,
+    ],
+  ); //隐藏底部按钮栏
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,12 +37,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'NavRoute',
         navigatorKey: navGK,
-        routes: {'new': (context) => const NewPage()},
+        routes: {
+          'PageA': (context) => const PageA(routeName: '/'),
+          'PageD': (context) => const PageD(routeName: '/'),
+        },
         theme: ThemeData(
           splashColor: Colors.transparent,
           highlightColor: const Color(0xfff9dc71),
         ),
-        home: const MyHomePage(),
+        home: const MainPage(),
       ),
     );
   }

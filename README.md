@@ -1,71 +1,56 @@
 Language: [English](README.md) | [中文简体](README_ZH.md)
 
-[![GitHub stars](https://img.shields.io/github/stars/fluttercandies/nav_router)](https://github.com/fluttercandies/nav_router/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/fluttercandies/nav_router)](https://github.com/fluttercandies/nav_router/network)
-[![GitHub issues](https://img.shields.io/github/issues/fluttercandies/nav_router)](https://github.com/fluttercandies/nav_router/issues) 
 
 # nav_router
 
-nav_router is the simplest / lightweight / convenient routing management solution for flutter. It supports various routing animations, and it is very convenient to jump / pass parameters. To jump to a new page, just routePush (NewPage ());
+This plug-in is an update to the nav_router, and I've had it for three years and have used it on more than 10 projects. I feel that this is the simplest/lightweight/convenient routing management solution in the flutter related routing plugin.
+Support a variety of route animation, jump/parameter up very convenient.
+Since the original author has not maintained, so I fork, and carried out the update and maintenance, so as not to waste a good routing library.
 
 # Log
-* 2021.03.25 - Migrating to `nullSafety`
+* 2023.04.11 - Adapt Flutter3.7.9 and fix some known issues.
 
-* 2020.07.04 - Test Flutter 1.17.3
-
-* 2020.06.03 - Cancel pop default empty string data
-
-* 2020.02.28 - Fix pop method of dev branch flutter error.
+# Features
+* You don't need to use context
+* Super easy to use
+* Easy to pass parameters
+* Supports a variety of jump animations
 
 ## Getting started
 
 ### Add dependency
 ```yaml
 dependencies:
-  nav_router: ^1.0.0
+  nav_router: ^2.0.0
 ```
-
-> Related articles updated ...
 
 Then use `flutter packages upgrade` to update flutter plugin packages
 
 # Sample project
 
-There is a pretty sweet example project in the example folder. Check it out. Otherwise, keep reading to get up and running.
+The example contains animation effects for various jumps, but not all of the plug-in's features. If you'd like to learn more, you can read on below.
 
 # Setting up
 *  1.Import our plugin on the page of `MaterialApp`
 ```dart
 import 'package:nav_router/nav_router.dart';
 ```
-*  2.Write `navGK` value in` navigatorKey` property of `MaterialApp`
+*  2.Write `navGK` value in` navigatorKey` property of `MaterialApp`.If you need to use named routes, you can configure a route Map on the `routes` property.
 ```dart
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: '',
       navigatorKey: navGK,
+      routes: {
+                'HomePage': (context) => const HomePage()
+              },
     );
   }
 ```
-* 3.Then, we can start using it, here is an example of a jump page
-```dart
-Widget buildItem(RouteModel item) {
-  return new FlatButton(
-    onPressed: () => routePush(new NewPage()),
-    child: new Text('Click to jump'),
-  );
-}
-```
+# Mode of use
+## 1、Parameter passing
+### Way 1：
 
-* 4.If we want to use other routing animations to jump, we can add jump properties later, such as: gradient animation
-```dart
-routePush(new NewPage(), RouterType.fade);
-```
-
-
-# Parameter passing
-
-## Way 1：
 Normally push the new page, but add Then at the back, the v behind is the data brought back by the page after we jump, and then we print it out.
 ```dart
 routePush(NewPage()).then((v) {
@@ -82,7 +67,7 @@ FlatButton(
 ),
 ```
 
-## Way 2：
+### Way 2：
 Method two can use our NavData, first add the NavData type parameter to the page we want to push to,
 ```dart
 class NewPage extends StatlessWidget {
@@ -109,6 +94,64 @@ routePush(NewPage(navData: (v) {
   }),
 );
 ```
+## 2.Page jump
+* Switch from page A to page B：
+```
+routePush(PageB());
+```
+
+* The specified page is displayed and the current page is removed:
+```
+pushReplacement(const PageB());
+```
+
+* Jump to the specified page and remove all other pages:
+```
+pushAndRemoveUntil(const PageB());
+```
+* Return to previous page:
+```
+pop();
+```
+* Return to the specified page:
+```
+popToPage(const PageB());
+```
+* Return to the root page:
+```
+popToRootPage();
+```
+
+
+
+### The corresponding named route:
+
+* Switch from page A to page B:
+```
+routePushName(const NewPage().toStringShort());
+```
+
+* The specified page is displayed and the current page is removed：
+```
+pushReplacementNamed(const PageB().toStringShort());
+```
+
+* Jump to the specified page and remove all other pages:
+```
+pushNamedAndRemoveUntil(const PageB().toStringShort());
+```
+* Remove the current page and go to the specified page, similar to pushReplacement:
+```
+popAndPushNamed(const PageB().toStringShort());
+```
+* Jump to the specified page and remove all other pages:
+```
+popUntil(ModalRoute.withName('\'));
+```
+
+
+
+
 
 # Effect map [图片不能显示点我](http://img.flutterj.com/nav_router/)
 |![1.gif](git/1.gif)| ![2.gif](git/2.gif) | ![3.gif](git/3.gif)|
