@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 ///
 class ScaleRoute extends PageRouteBuilder {
   final Widget page;
-  final Alignment alignment;
+  final Alignment? alignment;
 
   ScaleRoute({required this.page, this.alignment = Alignment.center})
       : super(
