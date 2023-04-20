@@ -22,7 +22,7 @@ class ScaleRoute extends PageRouteBuilder {
             Widget child,
           ) =>
               ScaleTransition(
-            alignment: alignment,
+            alignment: alignment ?? Alignment.center,
             scale: Tween<double>(
               begin: 0.0,
               end: 1.0,
