@@ -33,8 +33,8 @@ Route materialRoute(widget) {
 /// [Route animation effect]
 /// Swipe right to route the jump animation.
 ///
-Route slide(widget) {
-  return SlideRightRoute(page: widget);
+Route slide(widget, [align]) {
+  return SlideRoute(page: widget, alignment: align);
 }
 
 /// [Route animation effect]

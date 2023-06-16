@@ -21,6 +21,7 @@ class _RouteAnimationPageState extends State<RouteAnimationPage> {
     RouteModel('slide', RouterType.slide),
     RouteModel('rotation', RouterType.rotation),
     RouteModel('scaleRotate', RouterType.scaleRotate),
+    RouteModel('bottomToTop', RouterType.slideBottomTop),
   ];
 
   @override
@@ -46,8 +47,7 @@ class _RouteAnimationPageState extends State<RouteAnimationPage> {
       width: (MediaQuery.of(context).size.width - 50) / 2,
       child: TextButton(
         style: ButtonStyle(
-          padding: MaterialStateProperty.all(
-              const EdgeInsets.symmetric(vertical: 50.0)),
+          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 50.0)),
           backgroundColor: MaterialStateProperty.all(const Color(0xfff7c672)),
         ),
         onPressed: () {

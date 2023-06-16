@@ -43,6 +43,9 @@ Route routerUtil({RouterType type = RouterType.material, widget}) {
     case RouterType.scaleTopLeft:
       route = scale(widget, Alignment.topLeft);
       break;
+    case RouterType.slideBottomTop:
+      route = slide(widget, Alignment.bottomCenter);
+      break;
   }
 
   return route;

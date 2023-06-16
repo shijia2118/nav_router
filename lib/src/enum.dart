@@ -10,6 +10,7 @@ enum RouterType {
   size,
   fade,
   scaleRotate,
+  slideBottomTop,
 }
 
 /// Advanced usage d route enumeration enum type
